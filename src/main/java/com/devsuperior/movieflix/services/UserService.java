@@ -35,6 +35,12 @@ public class UserService implements UserDetailsService {
 		return new UserDTO(entity);
 	}
 	
+	  @Transactional(readOnly = true)
+	    public UserDTO getProfile() {
+	        return new UserDTO(authService.authenticated());
+	    }
+
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
